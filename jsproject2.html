@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+<title>project1</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE-edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<style>
+*{margin:0;padding:0;}
+body{background:#00fa9a;}
+.container{ width:100%;}
+.containbox{height:100vh; width:100%; display:flex; align-items:center; justify-content:center;}
+.gradebox{width:65%; height:470px; background:#3c4046; box-shadow:2px 5px 5px #3c4046; display:flex; align-items:center; }
+.newbtn1{height:30px;width:30px;border-radius:50%;border:1px solid gray; background:pink; float:right; margin:10px 10px; cursor:pointer;}
+.newbtn2{height:30px; width:30px; border-radius:50%; border:1px solid gray; background:#00fa9a; float:right;cursor:pointer; margin:10px 5px;}
+#heading{font-size:40px; color:#00fa9a; margin-left:10%; border-left:2px solid #00f090; padding-left:10px; font-family:Bahnschrift;}
+.gradeform input{font-size:18px;background:#3c4046; border-bottom:1px solid white; border-top:none;  border-left:none; color:white;}
+.gradeform span{font-size:18px;color:white;}
+.gradeform{margin-left:110px; margin-top:20px;}
+#last{font-size:20px; color:#00fa9a; font-family:Bahnschrift; cursor:pointer;}
+#resetbtn{font-size:20px; color:#00fa9a; font-family:Bahnschrift; cursor:pointer;}
+#last:hover{opacity:0.7;}
+#resetbtn:hover{opacity:0.7;}
+#myresult{color:white; margin-top:420px; margin-left:10%; position:absolute; font-family:Bahnschrift;}
+.mybuttons{display:flex;}
+
+@media (max-width:1208px){
+.gradebox{width:70%;}
+}
+ @media (max-width:1000px){
+ .gradebox{width:90%; flex-direction:column; height:auto; margin-top:-40px;}
+ .gradeform{margin-left:10%; margin-top:5%;}
+ #heading{border-left:none; border-bottom:2px solid #00fa9a; font-size:18px; margin-left:0px; margin-top:10px;}
+ #myresult{margin-top:20px; margin-left:20px; position:relative; }
+  .mybuttons{flex-direction:column; align-items:center; justify-content:center;}
+  #resetbtn{margin-top:20px; }
+  
+ }
+
+ 
+</style>
+<body class="body">
+<div class="container">
+<div>
+<div class="newbtn1" id="pinkclr" onclick="mycolor('pink')"></div>
+<div class="newbtn2" id="greenclr" onclick="mycolor('#00fa9a')">
+</div>
+</div>
+<div class="containbox">
+<div class="gradebox">
+<div class="mainhead">
+<p id="heading" >Student Grade<br>Calculator</p>
+
+</div>
+<div class="gradeform">
+<form>
+<span>Subject 1  &nbsp;&nbsp;&nbsp;<input type="number" placeholder="Enter Marks" id="sub1" required ></span><br><br>
+<span>Subject 2  &nbsp;&nbsp;&nbsp;<input type="number" placeholder="Enter Marks" id="sub2" required></span><br><br>
+<span>Subject 3  &nbsp;&nbsp;&nbsp;<input type="number" placeholder="Enter Marks" id="sub3" required ></span><br><br>
+<span>Subject 4  &nbsp;&nbsp;&nbsp;<input type="number" placeholder="Enter Marks" id="sub4" required></span><br><br>
+<span>Subject 5  &nbsp;&nbsp;&nbsp;<input type="number" placeholder="Enter Marks" id="sub5" required ></span><br><br><br>
+<div class="mybuttons">
+<input type="button"  value="Calculate your result" id="last" style="border:1px solid gray; " onclick="result()">
+<input type="reset" value="Reset data" id="resetbtn"  style="border:1px solid gray; margin-left:10px;"  onclick="resetall()">
+</div>
+</form>
+</div>
+<p id="myresult"></p>
+</div>
+
+</div>
+</div>
+<script>
+var clrchange = document.getElementsByClassName("body");
+function mycolor(color){
+for(let elm of clrchange){
+elm.style.backgroundColor=color;}
+var heading=document.getElementById("heading");
+heading.style.color=color;
+heading.style.borderColor=color;
+last.style.color=color;
+resetbtn.style.color=color;
+}
+function resetall(){
+document.getElementById('myresult').innerHTML="";
+}
+function result(){
+var sub1=document.getElementById("sub1").value;
+var sub2=document.getElementById("sub2").value;
+var sub3=document.getElementById("sub3").value;
+var sub4=document.getElementById("sub4").value;
+var sub5=document.getElementById("sub5").value;
+var pasfail="";
+var total=parseFloat(sub1)+parseFloat(sub2)+parseFloat(sub3)+parseFloat(sub4)+parseFloat(sub5);
+var pers=(total/500)*100
+
+if(pers<35)
+{ pasfail="Fail 🙁";
+}
+else if(pers>35)
+{pasfail="Pass 😀";}
+else{pasfail="Enter marks for all subjects"}
+document.getElementById('myresult').innerHTML=`Your Total Marks are ${total}/500 and Percentage is ${pers}%.<br> <font color="yellow">Result : ${pasfail} </font>`
+}
+
+</script>
+</body>
+</html>
